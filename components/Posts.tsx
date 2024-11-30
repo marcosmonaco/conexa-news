@@ -6,29 +6,30 @@ import {
   ActivityIndicator,
   Image,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
 import {Link} from "expo-router";
 
+import {PostData} from "@/models/post";
+
+import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
+import {toggleFavourite} from "../slices/favouritesSlice";
 import "../global.css";
 
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-  image: string;
-}
-
 export default function Posts() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostData[]>([]);
+
+  const dispatch = useAppDispatch();
+  const favourites = useAppSelector((state) => state.favourites.favourites);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch("https://jsonplaceholder.org/posts");
-        const data: Post[] = await response.json();
+        const data: PostData[] = await response.json();
         setPosts(data);
         setFilteredPosts(data);
       } catch (error) {
@@ -56,28 +57,45 @@ export default function Posts() {
     }
   };
 
-  const renderItem = ({item}: {item: Post}) => (
-    <Link
-      href={`/post/${item.id}?title=${encodeURIComponent(
-        item.title
-      )}&content=${encodeURIComponent(item.content)}&image=${encodeURIComponent(
-        item.image
-      )}`}
-      className="bg-white mx-4 m-2 p-4 rounded-lg shadow"
-    >
-      <Image
-        source={{uri: item.image}}
-        className="w-full h-40 rounded-lg mb-2"
-        resizeMode="cover"
-      />
-      <View className="flex flex-col">
-        <Text className="text-lg font-bold text-gray-800">{item.title}</Text>
-        <Text className="text-sm text-gray-600" numberOfLines={2}>
-          {item.content}
-        </Text>
+  const renderItem = ({item}: {item: PostData}) => {
+    const isFavourite = favourites.some((fav) => fav.id === item.id);
+
+    return (
+      <View className="bg-white mx-4 m-2 p-4 rounded-lg shadow">
+        <Link
+          href={`/post/${item.id}?title=${encodeURIComponent(
+            item.title
+          )}&content=${encodeURIComponent(
+            item.content
+          )}&image=${encodeURIComponent(item.image)}`}
+        >
+          <Image
+            source={{uri: item.image}}
+            className="w-full h-40 rounded-lg mb-2"
+            resizeMode="cover"
+          />
+          <View className="flex flex-col">
+            <Text className="text-lg font-bold text-gray-800">
+              {item.title}
+            </Text>
+            <Text className="text-sm text-gray-600 mt-1" numberOfLines={2}>
+              {item.content}
+            </Text>
+          </View>
+        </Link>
+        <TouchableOpacity
+          onPress={() => dispatch(toggleFavourite(item))}
+          className={`mt-2 p-2 ${
+            isFavourite ? "bg-red-500" : "bg-gray-400"
+          } rounded-lg w-fit`}
+        >
+          <Text className="text-sm font-bold text-center text-white">
+            {isFavourite ? "Quitar de favoritos" : "Marcar como favorito"}
+          </Text>
+        </TouchableOpacity>
       </View>
-    </Link>
-  );
+    );
+  };
 
   return (
     <View className="flex-1 bg-gray-100 p-4">

@@ -1,15 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {View, Text, FlatList, ActivityIndicator, TextInput} from "react-native";
 
-import "../global.css";
+import {User} from "@/models/user";
 
-interface User {
-  id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: string;
-}
+import "../global.css";
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
