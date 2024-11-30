@@ -1,9 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {PostData} from "@/models/post";
-
-interface FavouriteState {
-  favourites: PostData[];
-}
+import {FavouriteState} from "@/models/slices";
 
 const initialState: FavouriteState = {
   favourites: [],

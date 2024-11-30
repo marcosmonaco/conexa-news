@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {View, Text, FlatList, ActivityIndicator, TextInput} from "react-native";
+import {useTranslation} from "react-i18next";
 
 import {User} from "@/models/user";
 
@@ -10,6 +11,8 @@ export default function Users() {
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+
+  const {t} = useTranslation();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -50,8 +53,8 @@ export default function Users() {
       <View className="flex flex-row items-center gap-1">
         <Text className="text-lg text-gray-600">{user.firstname}</Text>
         <Text className="text-lg font-bold text-gray-800">{user.lastname}</Text>
-        <Text className="text-lg text-gray-800">-</Text>
-        <Text className="text-lg  text-gray-800">{user.phone}</Text>
+        <Text className="text-lg text-gray-600">-</Text>
+        <Text className="text-lg  text-gray-600">{user.phone}</Text>
       </View>
       <View className="flex flex-row">
         <Text className="text-sm text-gray-600">{user.email}</Text>
@@ -64,7 +67,7 @@ export default function Users() {
       <TextInput
         value={searchQuery}
         onChangeText={handleSearch}
-        placeholder="Buscar usuarios..."
+        placeholder={t("users.searchUsers")}
         className="m-4 p-2 bg-white rounded-md border border-gray-300"
       />
 

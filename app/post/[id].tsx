@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
-import {View, Text, Image} from "react-native";
+import {View, Text, Image, Button} from "react-native";
 import {useLocalSearchParams, useNavigation} from "expo-router";
+import {useTranslation} from "react-i18next";
 
 export default function PostDetail() {
   const {
@@ -15,11 +16,18 @@ export default function PostDetail() {
     image: string;
   }>();
 
+  const {t} = useTranslation();
+
   const navigation = useNavigation();
+
+  const customGoBack = (
+    <Button title={t("posts.goBack")} onPress={() => navigation.goBack()} />
+  );
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: `Details for Item ${id}`,
+      headerTitle: `${t("posts.detailsFromPost")} ${id}`,
+      headerLeft: () => customGoBack,
     });
   }, [id, navigation]);
 

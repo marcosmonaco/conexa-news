@@ -1,0 +1,25 @@
+{
+  "technicalChallenge": "Technical Challenge",
+  "swapLanguage": "Switch to Spanish",
+  "introduction": "Made by Marcos Monaco for the role of ",
+  "posts": {
+    "title": "Posts",
+    "addFavourite": "Mark as favourite",
+    "removeFavourite": "Remove from favourites",
+    "searchPosts": "Search posts...",
+    "detailsFromPost": "Details from post ",
+    "goBack": "Go back"
+  },
+  "users": {
+    "title": "Users",
+    "searchUsers": "Search users..."
+  },
+  "favourites": {
+    "title": "Favourites",
+    "noFavouritesYet": "No favourite posts yet!"
+  },
+  "notFound": {
+    "title": "This screen does not exist...",
+    "goBack": "Go back to home"
+  }
+}

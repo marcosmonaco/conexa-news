@@ -9,18 +9,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import {Link} from "expo-router";
+import {useTranslation} from "react-i18next";
 
 import {PostData} from "@/models/post";
 
+import "../global.css";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 import {toggleFavourite} from "../slices/favouritesSlice";
-import "../global.css";
 
 export default function Posts() {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredPosts, setFilteredPosts] = useState<PostData[]>([]);
+
+  const {t} = useTranslation();
 
   const dispatch = useAppDispatch();
   const favourites = useAppSelector((state) => state.favourites.favourites);
@@ -30,6 +33,7 @@ export default function Posts() {
       try {
         const response = await fetch("https://jsonplaceholder.org/posts");
         const data: PostData[] = await response.json();
+
         setPosts(data);
         setFilteredPosts(data);
       } catch (error) {
@@ -90,7 +94,7 @@ export default function Posts() {
           } rounded-lg w-fit`}
         >
           <Text className="text-sm font-bold text-center text-white">
-            {isFavourite ? "Quitar de favoritos" : "Marcar como favorito"}
+            {isFavourite ? t("posts.removeFavourite") : t("posts.addFavourite")}
           </Text>
         </TouchableOpacity>
       </View>
@@ -102,7 +106,7 @@ export default function Posts() {
       <TextInput
         value={searchQuery}
         onChangeText={handleSearch}
-        placeholder="Buscar posts..."
+        placeholder={t("posts.searchPosts")}
         className="m-4 p-2 bg-white rounded-md border border-gray-300"
       />
 

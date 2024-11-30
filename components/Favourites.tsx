@@ -1,6 +1,7 @@
 import React from "react";
 import {FlatList, Text, View, Image} from "react-native";
 import {Link} from "expo-router";
+import {useTranslation} from "react-i18next";
 
 import {PostData} from "@/models/post";
 
@@ -9,11 +10,13 @@ import {useAppSelector} from "../hooks/reduxHooks";
 export default function FavouritesPosts() {
   const favourites = useAppSelector((state) => state.favourites.favourites);
 
+  const {t} = useTranslation();
+
   if (favourites.length === 0) {
     return (
       <View className="flex-1 items-center justify-center">
         <Text className="text-lg font-semibold">
-          Todavia no hay post favoritos!
+          {t("favourites.noFavouritesYet")}
         </Text>
       </View>
     );
@@ -27,7 +30,7 @@ export default function FavouritesPosts() {
         )}&content=${encodeURIComponent(
           item.content
         )}&image=${encodeURIComponent(item.image)}`}
-        className="bg-white p-4 rounded-lg mb-2 shadow"
+        className="bg-white m-4 p-4 rounded-lg mb-2 shadow"
       >
         <View>
           <Image

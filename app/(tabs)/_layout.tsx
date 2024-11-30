@@ -1,12 +1,15 @@
 import {Tabs} from "expo-router";
 import React from "react";
 import {Platform} from "react-native";
+import {useTranslation} from "react-i18next";
 
 import {Colors} from "@/constants/Colors";
 import {useColorScheme} from "@/hooks/useColorScheme";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+
+  const {t} = useTranslation();
 
   return (
     <Tabs
@@ -24,19 +27,19 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Posts",
+          title: t("posts.title"),
         }}
       />
       <Tabs.Screen
         name="users"
         options={{
-          title: "Users",
+          title: t("users.title"),
         }}
       />
       <Tabs.Screen
         name="favourite"
         options={{
-          title: "Favourites",
+          title: t("favourites.title"),
         }}
       />
     </Tabs>
