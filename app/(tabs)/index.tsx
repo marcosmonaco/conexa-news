@@ -22,6 +22,7 @@ export default function HomeScreen() {
           <Text className="font-semibold">React Native Developer</Text>
         </Text>
         <TouchableOpacity
+          activeOpacity={0.8}
           className="bg-gray-400 w-40 p-2 rounded-xl self-center"
           onPress={() =>
             i18next.changeLanguage(i18next.language === "en" ? "es" : "en")

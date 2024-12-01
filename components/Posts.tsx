@@ -12,6 +12,7 @@ import {Link} from "expo-router";
 import {useTranslation} from "react-i18next";
 
 import {PostData} from "@/models/post";
+import {Ionicons} from "@expo/vector-icons";
 
 import "../global.css";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
@@ -87,15 +88,19 @@ export default function Posts() {
             </Text>
           </View>
         </Link>
+
         <TouchableOpacity
+          activeOpacity={0.8}
           onPress={() => dispatch(toggleFavourite(item))}
-          className={`mt-2 p-2 ${
-            isFavourite ? "bg-red-500" : "bg-gray-400"
-          } rounded-lg w-fit`}
+          className={`absolute top-2 right-2 rounded-xl p-2 ${
+            isFavourite ? "bg-yellow-600" : "bg-gray-500"
+          } `}
         >
-          <Text className="text-sm font-bold text-center text-white">
-            {isFavourite ? t("posts.removeFavourite") : t("posts.addFavourite")}
-          </Text>
+          <Ionicons
+            name={isFavourite ? "star" : "star-outline"}
+            size={20}
+            color="#FFFFFF"
+          />
         </TouchableOpacity>
       </View>
     );
