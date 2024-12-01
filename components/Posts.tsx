@@ -70,7 +70,7 @@ export default function Posts() {
   };
 
   return (
-    <View className="flex-1 bg-gray-100 p-4">
+    <View className="flex-1 bg-gray-100 p-4 mb-10">
       <TextInput
         value={searchQuery}
         onChangeText={handleSearch}

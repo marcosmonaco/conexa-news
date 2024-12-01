@@ -32,7 +32,7 @@ export default function FavouritesPosts() {
 
   const renderItem = ({item}: {item: PostData}) => {
     return (
-      <View className="bg-white m-4 p-4 rounded-lg mb-2 shadow">
+      <View className="bg-white m-4 p-4 rounded-lg mb-2 shadow ">
         <PostCard post={item} />
         <FavouriteButton
           isFavourite={true}
@@ -43,10 +43,12 @@ export default function FavouritesPosts() {
   };
 
   return (
-    <FlatList
-      data={favourites}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={renderItem}
-    />
+    <View className="flex-1 bg-gray-100 p-4 mb-10">
+      <FlatList
+        data={favourites}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+      />
+    </View>
   );
 }

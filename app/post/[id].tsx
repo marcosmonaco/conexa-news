@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {View, Text, Image, Button, ScrollView} from "react-native";
+import {Text, Image, Button, ScrollView} from "react-native";
 import {useLocalSearchParams, useNavigation} from "expo-router";
 import {useTranslation} from "react-i18next";
 
