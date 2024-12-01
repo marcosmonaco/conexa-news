@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {View, Text, Image, Button} from "react-native";
+import {View, Text, Image, Button, ScrollView} from "react-native";
 import {useLocalSearchParams, useNavigation} from "expo-router";
 import {useTranslation} from "react-i18next";
 
@@ -32,14 +32,14 @@ export default function PostDetail() {
   }, [id, navigation]);
 
   return (
-    <View className="flex-1 bg-gray-100 p-4">
+    <ScrollView className="flex-1 bg-gray-100 p-4">
       <Image
         source={{uri: image}}
         className="w-full h-60 rounded-lg mb-4"
         resizeMode="cover"
       />
       <Text className="text-xl font-bold text-gray-800">{title}</Text>
-      <Text className="text-gray-700 mt-2 text-base">{content}</Text>
-    </View>
+      <Text className="text-gray-700 mt-2 mb-6 text-base">{content}</Text>
+    </ScrollView>
   );
 }
