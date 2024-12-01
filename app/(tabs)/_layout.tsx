@@ -31,7 +31,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="posts"
         options={{
           title: t("posts.title"),
           tabBarIcon: ({focused}) => (
@@ -63,6 +63,19 @@ export default function TabLayout() {
           tabBarIcon: ({focused}) => (
             <Ionicons
               name="star"
+              size={20}
+              color={focused ? tabIconColor.active : tabIconColor.inactive}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="options"
+        options={{
+          title: t("options.title"),
+          tabBarIcon: ({focused}) => (
+            <Ionicons
+              name="settings"
               size={20}
               color={focused ? tabIconColor.active : tabIconColor.inactive}
             />

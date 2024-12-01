@@ -1,7 +1,11 @@
 {
-  "technicalChallenge": "Desafio tecnico",
-  "swapLanguage": "Cambiar a Ingles",
-  "introduction": "Realizado por Marcos Monaco para el puesto de ",
+  "login": {
+    "technicalChallenge": "Desafio tecnico",
+    "introduction": "Realizado por Marcos Monaco para el puesto de ",
+    "username": "Ingresar usuario",
+    "password": "Ingresar contraseña",
+    "signIn": "Ingresar"
+  },
   "posts": {
     "title": "Publicaciones",
     "addFavourite": "Marcar como favorito",
@@ -17,6 +21,11 @@
   "favourites": {
     "title": "Favoritos",
     "noFavouritesYet": "¡Todavia no hay publicaciones favoritas!"
+  },
+  "options": {
+    "title": "Opciones",
+    "swapLanguage": "Cambiar a Ingles",
+    "signOut": "Cerrar sesion"
   },
   "notFound": {
     "title": "Esta pantalla no existe...",
