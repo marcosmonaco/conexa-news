@@ -6,17 +6,17 @@ import {
   ActivityIndicator,
   Image,
   TextInput,
-  TouchableOpacity,
 } from "react-native";
 import {Link} from "expo-router";
 import {useTranslation} from "react-i18next";
 
 import {PostData} from "@/models/post";
-import {Ionicons} from "@expo/vector-icons";
 
 import "../global.css";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 import {toggleFavourite} from "../slices/favouritesSlice";
+
+import FavouriteButton from "./FavouriteButton";
 
 export default function Posts() {
   const [posts, setPosts] = useState<PostData[]>([]);
@@ -89,19 +89,10 @@ export default function Posts() {
           </View>
         </Link>
 
-        <TouchableOpacity
-          activeOpacity={0.8}
+        <FavouriteButton
+          isFavourite={isFavourite}
           onPress={() => dispatch(toggleFavourite(item))}
-          className={`absolute top-2 right-2 rounded-xl p-2 ${
-            isFavourite ? "bg-yellow-600" : "bg-gray-500"
-          } `}
-        >
-          <Ionicons
-            name={isFavourite ? "star" : "star-outline"}
-            size={20}
-            color="#FFFFFF"
-          />
-        </TouchableOpacity>
+        />
       </View>
     );
   };

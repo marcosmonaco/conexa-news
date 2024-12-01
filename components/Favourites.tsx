@@ -1,13 +1,13 @@
 import React from "react";
-import {FlatList, Text, View, Image, TouchableOpacity} from "react-native";
+import {FlatList, Text, View, Image} from "react-native";
 import {Link} from "expo-router";
 import {useTranslation} from "react-i18next";
 
 import {toggleFavourite} from "@/slices/favouritesSlice";
 import {PostData} from "@/models/post";
-import {Ionicons} from "@expo/vector-icons";
 
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
+import FavouriteButton from "./FavouriteButton";
 
 export default function FavouritesPosts() {
   const favourites = useAppSelector((state) => state.favourites.favourites);
@@ -51,13 +51,11 @@ export default function FavouritesPosts() {
             </Text>
           </View>
         </Link>
-        <TouchableOpacity
-          activeOpacity={0.8}
+
+        <FavouriteButton
+          isFavourite={true}
           onPress={() => handleRemove(item)}
-          className="absolute top-2 right-2 rounded-xl p-2 bg-yellow-600"
-        >
-          <Ionicons name="star" size={20} color="#FFFFFF" />
-        </TouchableOpacity>
+        />
       </View>
     );
   };
