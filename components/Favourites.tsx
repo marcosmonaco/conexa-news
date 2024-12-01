@@ -1,13 +1,14 @@
 import React from "react";
 import {FlatList, Text, View, Image} from "react-native";
-import {Link} from "expo-router";
 import {useTranslation} from "react-i18next";
 
 import {toggleFavourite} from "@/slices/favouritesSlice";
 import {PostData} from "@/models/post";
 
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
+
 import FavouriteButton from "./FavouriteButton";
+import PostCard from "./PostCard";
 
 export default function FavouritesPosts() {
   const favourites = useAppSelector((state) => state.favourites.favourites);
@@ -32,26 +33,7 @@ export default function FavouritesPosts() {
   const renderItem = ({item}: {item: PostData}) => {
     return (
       <View className="bg-white m-4 p-4 rounded-lg mb-2 shadow">
-        <Link
-          href={`/post/${item.id}?title=${encodeURIComponent(
-            item.title
-          )}&content=${encodeURIComponent(
-            item.content
-          )}&image=${encodeURIComponent(item.image)}`}
-        >
-          <View>
-            <Image
-              source={{uri: item.image}}
-              className="w-full h-40 rounded-lg mb-2"
-              resizeMode="cover"
-            />
-            <Text className="text-lg font-semibold">{item.title}</Text>
-            <Text className="text-gray-500" numberOfLines={2}>
-              {item.content}
-            </Text>
-          </View>
-        </Link>
-
+        <PostCard post={item} />
         <FavouriteButton
           isFavourite={true}
           onPress={() => handleRemove(item)}
@@ -65,7 +47,6 @@ export default function FavouritesPosts() {
       data={favourites}
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderItem}
-      contentContainerStyle={{padding: 16}}
     />
   );
 }

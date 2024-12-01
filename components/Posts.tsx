@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  ActivityIndicator,
-  Image,
-  TextInput,
-} from "react-native";
-import {Link} from "expo-router";
+import {View, FlatList, ActivityIndicator, TextInput} from "react-native";
 import {useTranslation} from "react-i18next";
 
 import {PostData} from "@/models/post";
@@ -17,6 +9,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 import {toggleFavourite} from "../slices/favouritesSlice";
 
 import FavouriteButton from "./FavouriteButton";
+import PostCard from "./PostCard";
 
 export default function Posts() {
   const [posts, setPosts] = useState<PostData[]>([]);
@@ -66,29 +59,8 @@ export default function Posts() {
     const isFavourite = favourites.some((fav) => fav.id === item.id);
 
     return (
-      <View className="bg-white mx-4 m-2 p-4 rounded-lg shadow">
-        <Link
-          href={`/post/${item.id}?title=${encodeURIComponent(
-            item.title
-          )}&content=${encodeURIComponent(
-            item.content
-          )}&image=${encodeURIComponent(item.image)}`}
-        >
-          <Image
-            source={{uri: item.image}}
-            className="w-full h-40 rounded-lg mb-2"
-            resizeMode="cover"
-          />
-          <View className="flex flex-col">
-            <Text className="text-lg font-bold text-gray-800">
-              {item.title}
-            </Text>
-            <Text className="text-sm text-gray-600 mt-1" numberOfLines={2}>
-              {item.content}
-            </Text>
-          </View>
-        </Link>
-
+      <View className="bg-white m-4 p-4 rounded-lg mb-2 shadow">
+        <PostCard post={item} />
         <FavouriteButton
           isFavourite={isFavourite}
           onPress={() => dispatch(toggleFavourite(item))}
