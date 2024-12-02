@@ -2,51 +2,39 @@ import React, {useEffect, useState} from "react";
 import {View, Text, FlatList, ActivityIndicator, TextInput} from "react-native";
 import {useTranslation} from "react-i18next";
 
-import {User} from "@/models/user";
+import {User, UserPageProps} from "@/models/user";
 
 import "../global.css";
 
-export default function Users() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+export default function Users({users, loading}: UserPageProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
 
   const {t} = useTranslation();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("https://jsonplaceholder.org/users");
-        const data: User[] = await response.json();
-        setUsers(data);
-        setFilteredUsers(data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
   const handleSearch = (query: string) => {
     setSearchQuery(query);
 
-    if (query === "") {
+    if (query.trim() === "") {
       setFilteredUsers(users);
     } else {
-      const filtered = users.filter(
-        (user) =>
-          user.firstname.toLowerCase().includes(query.toLowerCase()) ||
+      // Esta constante se agrega para que si buscamos un nombre *espacio* apellido, no se salteen los nombres a causa del espacio.
+      const filtered = users.filter((user) => {
+        const fullName = `${user.firstname} ${user.lastname}`.toLowerCase();
+
+        return (
+          fullName.includes(query.toLowerCase()) ||
           user.email.toLowerCase().includes(query.toLowerCase()) ||
-          user.phone.toLowerCase().includes(query.toLowerCase()) ||
-          user.lastname.toLowerCase().includes(query.toLowerCase())
-      );
+          user.phone.toLowerCase().includes(query.toLowerCase())
+        );
+      });
       setFilteredUsers(filtered);
     }
   };
+
+  useEffect(() => {
+    setFilteredUsers(users);
+  }, [users]);
 
   const renderItem = ({item: user}: {item: User}) => (
     <View className="bg-white mx-4 m-2 p-4 rounded-lg shadow">

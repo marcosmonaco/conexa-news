@@ -5,3 +5,8 @@ export interface User {
   email: string;
   phone: string;
 }
+
+export interface UserPageProps {
+  users: User[];
+  loading: boolean;
+}
