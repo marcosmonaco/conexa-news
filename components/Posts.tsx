@@ -4,7 +4,6 @@ import {useTranslation} from "react-i18next";
 
 import {PostData, PostPageProps} from "@/models/post";
 
-import "../global.css";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 import {toggleFavourite} from "../slices/favouritesSlice";
 
@@ -60,10 +59,15 @@ export default function Posts({posts, loading}: PostPageProps) {
         onChangeText={handleSearch}
         placeholder={t("posts.searchPosts")}
         className="m-4 p-2 bg-white rounded-md border border-gray-300"
+        testID="search-input"
       />
 
       {loading ? (
-        <ActivityIndicator size="large" color="#3b82f6" />
+        <ActivityIndicator
+          size="large"
+          color="#3b82f6"
+          testID="loading-spinner"
+        />
       ) : (
         <FlatList
           data={filteredPosts}

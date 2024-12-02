@@ -33,3 +33,13 @@ jest.mock("react-native-gesture-handler", () => {
 });
 
 jest.mock("expo-font");
+
+module.exports = {
+  preset: "react-native",
+  transformIgnorePatterns: [
+    "node_modules/(?!(react-native|react-navigation|@react-native|react-redux|@react-native-community|redux-persist)/)",
+  ],
+  moduleNameMapper: {
+    "\\.(css|less)$": "identity-obj-proxy", // Mock CSS imports if any
+  },
+};
