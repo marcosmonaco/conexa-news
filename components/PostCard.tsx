@@ -17,6 +17,7 @@ export default function PostCard({post}: {post: PostData}) {
         source={{uri: post.image}}
         className="w-full h-40 rounded-lg mb-2"
         resizeMode="cover"
+        testID="post-image"
       />
       <View className="flex flex-col">
         <Text className="text-lg font-bold text-gray-800">{post.title}</Text>
