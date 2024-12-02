@@ -1,5 +1,4 @@
 import React from "react";
-import {useRouter} from "expo-router";
 import {SafeAreaView} from "react-native";
 
 import SignIn from "@/components/SignIn";

@@ -15,6 +15,7 @@ export default function Options() {
         onPress={() =>
           i18next.changeLanguage(i18next.language === "en" ? "es" : "en")
         }
+        testID="switch-language-button"
       >
         <Text className="text-center text-white">
           {t("options.swapLanguage")}
@@ -26,6 +27,7 @@ export default function Options() {
         onPress={() => {
           router.replace("/");
         }}
+        testID="sign-out-button"
       >
         <Text className="text-center text-white">{t("options.signOut")}</Text>
       </TouchableOpacity>
