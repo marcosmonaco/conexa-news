@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {View, FlatList, ActivityIndicator, TextInput} from "react-native";
 import {useTranslation} from "react-i18next";
 
-import {PostData} from "@/models/post";
+import {PostData, PostPageProps} from "@/models/post";
 
 import "../global.css";
 import {useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
@@ -11,34 +11,14 @@ import {toggleFavourite} from "../slices/favouritesSlice";
 import FavouriteButton from "./FavouriteButton";
 import PostCard from "./PostCard";
 
-export default function Posts() {
-  const [posts, setPosts] = useState<PostData[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+export default function Posts({posts, loading}: PostPageProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredPosts, setFilteredPosts] = useState<PostData[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostData[]>();
 
   const {t} = useTranslation();
 
   const dispatch = useAppDispatch();
   const favourites = useAppSelector((state) => state.favourites.favourites);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch("https://jsonplaceholder.org/posts");
-        const data: PostData[] = await response.json();
-
-        setPosts(data);
-        setFilteredPosts(data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -54,6 +34,10 @@ export default function Posts() {
       setFilteredPosts(filtered);
     }
   };
+
+  useEffect(() => {
+    setFilteredPosts(posts);
+  }, [posts]);
 
   const renderItem = ({item}: {item: PostData}) => {
     const isFavourite = favourites.some((fav) => fav.id === item.id);

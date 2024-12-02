@@ -4,3 +4,8 @@ export interface PostData {
   content: string;
   image: string;
 }
+
+export interface PostPageProps {
+  posts: PostData[];
+  loading: boolean;
+}
