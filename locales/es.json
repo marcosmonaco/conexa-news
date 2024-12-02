@@ -28,7 +28,7 @@
     "signOut": "Cerrar sesion"
   },
   "notFound": {
-    "title": "Esta pantalla no existe...",
+    "title": "Esta pantalla no existe.",
     "goBack": "Volver al inicio"
   }
 }

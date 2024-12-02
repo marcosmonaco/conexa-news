@@ -28,7 +28,7 @@
     "signOut": "Sign Out"
   },
   "notFound": {
-    "title": "This screen does not exist...",
+    "title": "This screen does not exist.",
     "goBack": "Go back to home"
   }
 }
