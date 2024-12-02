@@ -2,8 +2,12 @@ import {Text, SafeAreaView} from "react-native";
 import {useTranslation} from "react-i18next";
 
 import FavouritesPosts from "@/components/Favourites";
+import {useAppDispatch, useAppSelector} from "@/hooks/reduxHooks";
 
 export default function Favourites() {
+  const favourites = useAppSelector((state) => state.favourites.favourites);
+  const dispatch = useAppDispatch();
+
   const {t} = useTranslation();
 
   return (
@@ -11,7 +15,7 @@ export default function Favourites() {
       <Text className="font-semibold text-3xl text-center">
         {t("favourites.title")}
       </Text>
-      <FavouritesPosts />
+      <FavouritesPosts posts={favourites} dispatch={dispatch} />
     </SafeAreaView>
   );
 }
