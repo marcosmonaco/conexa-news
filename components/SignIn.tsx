@@ -18,10 +18,12 @@ export default function SignIn() {
       <Text className="font-semibold text-3xl text-center">
         {t("login.technicalChallenge")}
       </Text>
-      <Text className="text-center">
-        {t("login.introduction")}
-        <Text className="font-semibold">React Native Developer</Text>
-      </Text>
+      <View className="flex flex-col gap-1">
+        <Text className="text-center">{t("login.introduction")}</Text>
+        <Text className="font-semibold text-center">
+          React Native Developer
+        </Text>
+      </View>
       <View className="flex flex-col gap-8 pt-10">
         <TextInput
           value={username}
@@ -45,6 +47,7 @@ export default function SignIn() {
           onPress={() => {
             router.replace("/(tabs)/posts");
           }}
+          testID="sign-in-button"
         >
           <Text className="text-center text-white">{t("login.signIn")}</Text>
         </TouchableOpacity>
