@@ -15,12 +15,12 @@ export default function FavouriteButton({
       className={`absolute top-2 right-2 rounded-xl p-2 ${
         isFavorite ? "bg-yellow-600" : "bg-gray-500"
       }`}
-      testID="favourite-button"
+      testID="favourite-wrapper"
     >
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={onPress}
-        testID="favourite-wrapper"
+        testID="favourite-button"
       >
         <Ionicons
           name={isFav}

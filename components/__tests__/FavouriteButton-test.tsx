@@ -38,16 +38,16 @@ describe("FavouriteButton Component", () => {
       <FavouriteButton isFavourite={false} onPress={jest.fn()} />
     );
 
-    const button = getByTestId("favourite-button");
     const wrapper = getByTestId("favourite-wrapper");
+    const button = getByTestId("favourite-button");
 
     const icon = getByTestId("favourite-icon");
 
-    // Verify that the button exists
-    expect(button).toBeTruthy();
+    // Verify that the wrapper exists
+    expect(wrapper).toBeTruthy();
 
     // Verify that the touchableOpacity exists
-    expect(wrapper).toBeTruthy();
+    expect(button).toBeTruthy();
 
     //Verify that it has the correct icon
     expect(icon.props.accessibilityLabel).toEqual("star-outline");
@@ -59,10 +59,10 @@ describe("FavouriteButton Component", () => {
       <FavouriteButton isFavourite={true} onPress={onPressMock} />
     );
 
-    const wrapper = getByTestId("favourite-wrapper");
+    const button = getByTestId("favourite-button");
 
     // Simulates the event of pressing the button
-    fireEvent.press(wrapper);
+    fireEvent.press(button);
 
     // Verify that the onPress function was called
     expect(onPressMock).toHaveBeenCalledTimes(1);
