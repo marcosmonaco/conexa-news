@@ -25,7 +25,7 @@ jest.mock("react-i18next", () => ({
   }),
 }));
 
-describe("PostCard Component", () => {
+describe("Posts Page Component", () => {
   it("should display all posts", () => {
     const {getByText} = render(<Posts posts={mockPosts} loading={false} />);
 
