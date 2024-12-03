@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Text, View} from "react-native";
+import {FlatList, Platform, Text, View} from "react-native";
 import {useTranslation} from "react-i18next";
 
 import {toggleFavourite} from "@/slices/favouritesSlice";
@@ -9,6 +9,8 @@ import FavouriteButton from "./FavouriteButton";
 import PostCard from "./PostCard";
 
 export default function FavouritesPosts({posts, dispatch}: FavouritePageProps) {
+  const isIOS = Platform.OS === "ios";
+
   const {t} = useTranslation();
 
   if (posts.length === 0) {
@@ -38,7 +40,7 @@ export default function FavouritesPosts({posts, dispatch}: FavouritePageProps) {
   };
 
   return (
-    <View className="flex-1 bg-gray-100 p-4 mb-10">
+    <View className={`flex-1 bg-gray-100  ${isIOS ? "mb-10 p-4" : "mb-0 p-0"}`}>
       <FlatList
         data={posts}
         keyExtractor={(item) => item.id.toString()}

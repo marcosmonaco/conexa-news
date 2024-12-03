@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {View, FlatList, ActivityIndicator, TextInput} from "react-native";
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  TextInput,
+  Platform,
+} from "react-native";
 import {useTranslation} from "react-i18next";
 
 import {PostData, PostPageProps} from "@/models/post";
@@ -15,6 +21,8 @@ export default function Posts({posts, loading}: PostPageProps) {
   const [filteredPosts, setFilteredPosts] = useState<PostData[]>();
 
   const {t} = useTranslation();
+
+  const isIOS = Platform.OS === "ios";
 
   const dispatch = useAppDispatch();
   const favourites = useAppSelector((state) => state.favourites.favourites);
@@ -53,7 +61,7 @@ export default function Posts({posts, loading}: PostPageProps) {
   };
 
   return (
-    <View className="flex-1 bg-gray-100 p-4 mb-10">
+    <View className={`flex-1 bg-gray-100  ${isIOS ? "mb-10 p-4" : "mb-0 p-0"}`}>
       <TextInput
         value={searchQuery}
         onChangeText={handleSearch}

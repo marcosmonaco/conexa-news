@@ -29,7 +29,7 @@ export default function UsersPage() {
 
   const {t} = useTranslation();
   return (
-    <SafeAreaView className="flex-1 bg-gray-100 py-10">
+    <SafeAreaView className="flex-1 bg-gray-100 pt-10">
       <Text className="font-semibold text-3xl text-center">
         {t("users.title")}
       </Text>

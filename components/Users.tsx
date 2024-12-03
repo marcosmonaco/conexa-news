@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, FlatList, ActivityIndicator, TextInput} from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  TextInput,
+  Platform,
+} from "react-native";
 import {useTranslation} from "react-i18next";
 
 import {User, UserPageProps} from "@/models/user";
@@ -7,6 +14,8 @@ import {User, UserPageProps} from "@/models/user";
 export default function Users({users, loading}: UserPageProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+
+  const isIOS = Platform.OS === "ios";
 
   const {t} = useTranslation();
 
@@ -49,7 +58,7 @@ export default function Users({users, loading}: UserPageProps) {
   );
 
   return (
-    <View className="flex-1 bg-gray-100 p-4 mb-10">
+    <View className={`flex-1 bg-gray-100  ${isIOS ? "mb-10 p-4" : "mb-0 p-0"}`}>
       <TextInput
         value={searchQuery}
         onChangeText={handleSearch}
