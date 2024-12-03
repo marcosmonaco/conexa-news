@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Text, Image, Button, ScrollView} from "react-native";
+import {Text, Image, Button, ScrollView, View, Platform} from "react-native";
 import {useLocalSearchParams, useNavigation} from "expo-router";
 import {useTranslation} from "react-i18next";
 
@@ -17,11 +17,14 @@ export default function PostDetail() {
   }>();
 
   const {t} = useTranslation();
+  const isIOS = Platform.OS === "ios";
 
   const navigation = useNavigation();
 
   const customGoBack = (
-    <Button title={t("posts.goBack")} onPress={() => navigation.goBack()} />
+    <View className={`${isIOS ? "pr-0" : "pr-10"}`}>
+      <Button title={t("posts.goBack")} onPress={() => navigation.goBack()} />
+    </View>
   );
 
   useEffect(() => {
