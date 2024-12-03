@@ -6,6 +6,8 @@ import Users from "@/components/Users";
 import {User} from "@/models/user";
 import {fetchUsers} from "@/services/users";
 
+import "../../global.css";
+
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

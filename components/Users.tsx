@@ -4,8 +4,6 @@ import {useTranslation} from "react-i18next";
 
 import {User, UserPageProps} from "@/models/user";
 
-import "../global.css";
-
 export default function Users({users, loading}: UserPageProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
@@ -57,10 +55,15 @@ export default function Users({users, loading}: UserPageProps) {
         onChangeText={handleSearch}
         placeholder={t("users.searchUsers")}
         className="m-4 p-2 bg-white rounded-md border border-gray-300"
+        testID="user-search-input"
       />
 
       {loading ? (
-        <ActivityIndicator size="large" color="#3b82f6" />
+        <ActivityIndicator
+          size="large"
+          color="#3b82f6"
+          testID="users-loading-spinner"
+        />
       ) : (
         <FlatList
           data={filteredUsers}
