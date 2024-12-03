@@ -37,8 +37,10 @@ En este proyecto, implementé el patrón de diseño **Modelo-Vista-Controlador (
 - Ejecutar el siguiente comando y seleccionar la opcion deseada:  
 
    ```bash
-   npm expo start
-   
+   npx expo start
+
+- Presionar la A para correr en emulador de android, y presionar la I para correr en emulador de IOS.
+
 ## Ejecutar suite de pruebas
 
 - Ejecutar el siguiente comando:  
