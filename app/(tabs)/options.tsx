@@ -1,5 +1,6 @@
 import {Text, SafeAreaView} from "react-native";
 import {useTranslation} from "react-i18next";
+
 import Options from "@/components/Options";
 
 export default function OptionsPage() {

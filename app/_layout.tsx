@@ -7,7 +7,6 @@ import {useEffect} from "react";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import {I18nextProvider} from "react-i18next";
-import {GestureHandlerRootView} from "react-native-gesture-handler";
 
 import {DarkTheme, DefaultTheme, ThemeProvider} from "@react-navigation/native";
 import {useColorScheme} from "@/hooks/useColorScheme";
