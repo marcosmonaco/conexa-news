@@ -1,50 +1,48 @@
-# Welcome to your Expo app 👋
+# Conexa News - Challenge tecnico  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto es una aplicación desarrollada con **React Native** utilizando **Expo**. Realizado para Conexa
+## Librerías adicionales  
 
-## Get started
+### Estilos  
+- **nativewind**: Permite aplicar estilos utilizando la nomenclatura de TailwindCSS en lugar de `styles` convencionales. Esto es una preferencia personal para facilitar el manejo de estilos.  
 
-1. Install dependencies
+### Gestión de estado  
+- **redux**: Se utiliza para la gestión de estados globales, en este caso, la lista de favoritos.  
+- **redux-persist**: Extiende redux para guardar datos en el almacenamiento local, permitiendo que la información persista incluso cuando se cierra completamente la aplicación.  
+
+### Multilenguaje  
+- **i18next**: Gestiona la traducción y adaptación de contenido al idioma preferido del usuario. En esta app se incluyen traducciones para español e inglés.  
+
+### Iconos  
+- **ion-icons**: Proporciona una amplia gama de iconos personalizados, fáciles de integrar y personalizar.  
+
+### Pruebas  
+- **React Native Testing Library**: Herramienta para realizar pruebas unitarias en componentes de la app.  
+- **JestJS**: Framework utilizado para ejecutar las pruebas unitarias.
+
+## Patrón de Diseño: MVC
+
+En este proyecto, implementé el patrón de diseño **Modelo-Vista-Controlador (MVC)** para estructurar y organizar el código de manera clara y escalable, para que cada capa tenga una funcion especifica.
+
+### Pasos para levantar la aplicación 
+- Tener instalado un simulador (ANDROID: Android Studio / IOS: XCode)  
+
+- Clonar este repositorio.  
+- En la carpeta raíz del proyecto, ejecuta el siguiente comando para instalar las dependencias: 
 
    ```bash
    npm install
-   ```
 
-2. Start the app
+- *PARA ANDROID* es preferible tener corriendo el emulador de antemano
+- Ejecutar el siguiente comando y seleccionar la opcion deseada:  
 
    ```bash
-    npx expo start
-   ```
+   npm expo start
+   
+## Ejecutar suite de pruebas
 
-In the output, you'll find options to open the app in a
+- Ejecutar el siguiente comando:  
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npm test
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
